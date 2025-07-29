@@ -39,10 +39,10 @@ This test plan outlines the API testing approach for the Book Cart application, 
 
 | Domain | Endpoints Tested | HTTP Methods | Test Coverage |
 |--------|------------------|--------------|---------------|
-| **User Management** | `/api/User`, `/api/Login` | POST | ✅ 50% (2/4 endpoints) |
-| **Book Catalog** | `/api/Book`, `/api/Book/{id}`, `/api/Book/GetCategoriesList`, `/api/Book/GetSimilarBooks/{bookId}` | GET | ✅ 57% (4/7 endpoints) |
-| **Shopping Cart** | `/api/ShoppingCart/{userId}`, `/api/ShoppingCart/AddToCart/{userId}/{bookId}`, `/api/ShoppingCart/{userId}/{bookId}` | GET, POST, DELETE | ✅ 50% (3/6 endpoints) |
-| **Orders** | `/api/Order/{userId}`, `/api/CheckOut/{userId}` | GET, POST | ✅ 100% (2/2 endpoints) |
+| **User Management** | `/api/User`, `/api/Login` | POST | 50% (2/4 endpoints) |
+| **Book Catalog** | `/api/Book`, `/api/Book/{id}`, `/api/Book/GetCategoriesList`, `/api/Book/GetSimilarBooks/{bookId}` | GET | 57% (4/7 endpoints) |
+| **Shopping Cart** | `/api/ShoppingCart/{userId}`, `/api/ShoppingCart/AddToCart/{userId}/{bookId}`, `/api/ShoppingCart/{userId}/{bookId}` | GET, POST, DELETE | 50% (3/6 endpoints) |
+| **Orders** | `/api/Order/{userId}`, `/api/CheckOut/{userId}` | GET, POST | 100% (2/2 endpoints) |
 
 ### 2.3 Testing Scope
 -  **Functional API Testing** - Core business functionality
@@ -71,6 +71,16 @@ This test plan outlines the API testing approach for the Book Cart application, 
 - **Dynamic Generation:** Faker for realistic data
 - **Static Data:** Pre-defined test users in test_data.json
 - **Data Isolation:** Each test uses unique data where needed
+
+### 3.4 Risk Assessment
+
+| Risk | Impact | Probability | Mitigation Strategy |
+|------|--------|-------------|-------------------|
+| **API Changes** | High | Medium | Monitor Swagger documentation regularly, maintain flexible test framework |
+| **Environment Issues** | High | Low | Use stable Azure environment, maintain backup test data |
+| **Time Constraints** | Medium | Medium | Prioritize smoke tests, focus on critical user flows |
+| **Data Dependencies** | Medium | Low | Use dynamic data generation, minimize external dependencies |
+| **Framework Maintenance** | Low | Low | Clean code practices, modular architecture |
 
 ---
 
@@ -212,6 +222,10 @@ This test plan outlines the API testing approach for the Book Cart application, 
 - **Positive Test Ratio:** 85% (11/13 automated tests are positive scenarios)
 - **Negative Test Ratio:** 15% (2/13 automated tests are negative scenarios)
 
+### 5.2 Bug Reporting Process
+
+**For detailed bug reports with steps to reproduce, see [BUGS.md](BUGS.md).**
+
 ---
 
 ## 6. Test Environment & Data Management
@@ -289,40 +303,16 @@ pytest -m smoke
 
 ---
 
-## 9. Assignment Requirements Compliance
+## 9. Future Enhancements
 
-### 9.1 Requirements Fulfilled
-
-| Requirement | Status | Implementation |
-|-------------|--------|----------------|
-| **Investigate Book Cart application** | ✅ | Application analyzed and documented |
-| **Create test plan** | ✅ | This comprehensive test plan |
-| **Write API test cases** | ✅ | Real user flows with multiple API calls |
-| **Identify Smoke Tests** | ✅ | 5 critical smoke tests identified |
-| **Positive and negative test cases** | ✅ | Both implemented |
-| **Python automation** | ✅ | pytest + requests framework |
-| **GitHub repository** | ✅ | Clean repository with documentation |
-| **Documentation** | ✅ | README.md and TEST_PLAN.md |
-| **Bug reporting** | ✅ | Issues documented in this plan |
-| **Best practices** | ✅ | Clean code, modular design, proper documentation |
-
-### 9.2 Test Coverage Summary
-- **API Endpoints:** 60% coverage (12/20 endpoints tested)
-- **User Flows:** All major user journeys tested
-- **Error Scenarios:** Key negative test cases implemented
-
----
-
-## 10. Future Enhancements
-
-### 10.1 Potential Improvements
+### 9.1 Potential Improvements
 - **Additional Endpoints:** Test remaining API endpoints
 - **Performance Testing:** Basic response time validation
 - **Security Testing:** Authentication and authorization testing
 - **Data Validation:** More comprehensive data integrity checks
 - **CI/CD Integration:** Automated test execution in pipeline
 
-### 10.2 Scalability Considerations
+### 9.2 Scalability Considerations
 - **Parallel Execution:** Running tests in parallel for faster execution
 - **Test Data Management:** More sophisticated test data strategies
 - **Environment Management:** Support for multiple test environments
