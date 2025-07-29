@@ -1,0 +1,48 @@
+{
+  "valid_users": [
+    {
+      "username": "testS",
+      "password": "Test1234",
+      "userId": 11274,
+      "userTypeName": "User"
+    },
+    {
+      "username": "user_69103",
+      "password": "Gmm4deef",
+      "userId": 11283,
+      "userTypeName": "User"
+    }
+  ],
+  "invalid_users": [
+    {
+      "username": "invaliduser",
+      "password": "wrongpass"
+    },
+    {
+      "username": "testuser3",
+      "password": "short"
+    }
+  ],
+  "expected_categories": [
+    {
+      "categoryId": 1,
+      "categoryName": "Biography"
+    },
+    {
+      "categoryId": 2,
+      "categoryName": "Fiction"
+    },
+    {
+      "categoryId": 3,
+      "categoryName": "Mystery"
+    },
+    {
+      "categoryId": 4,
+      "categoryName": "Fantasy"
+    },
+    {
+      "categoryId": 5,
+      "categoryName": "Romance"
+    }
+  ]
+} 
