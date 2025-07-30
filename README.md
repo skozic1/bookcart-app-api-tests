@@ -80,9 +80,6 @@ pytest -m functional
 # Run only negative tests
 pytest -m negative
 
-# Run with verbose output
-pytest -v
-
 # Run specific test file
 pytest tests/test_orders.py
 
