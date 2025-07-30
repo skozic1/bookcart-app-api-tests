@@ -45,7 +45,7 @@ This project was created as part of a QA Engineer assignment with the following 
 1. **Clone the repository**
    ```bash
    git clone https://github.com/skozic1/bookcart-app-api-tests.git
-   cd bookcart-api-tests
+   cd bookcart-app-api-tests
    ```
 
 2. **Create and activate virtual environment**
