@@ -77,22 +77,10 @@ This test plan outlines the API testing approach for the Book Cart application, 
 
 ---
 
-## 4. API Endpoints Coverage
+## 4. Test Scenarios
+### 4.1 Test Scenarios
 
-### 4.1 API Endpoints Tested
-
-| Domain | Endpoints Tested | HTTP Methods | Test Coverage |
-|--------|------------------|--------------|---------------|
-| **User Management** | `/api/User`, `/api/Login`, `/api/User/validateUserName/{userName}` | POST, GET | 75% (3/4 endpoints) |
-| **Book Catalog** | `/api/Book`, `/api/Book/{id}`, `/api/Book/GetCategoriesList`, `/api/Book/GetSimilarBooks/{bookId}` | GET | 57% (4/7 endpoints) |
-| **Shopping Cart** | `/api/ShoppingCart/{userId}`, `/api/ShoppingCart/AddToCart/{userId}/{bookId}`, `/api/ShoppingCart/{userId}/{bookId}` | GET, POST, DELETE | 50% (3/6 endpoints) |
-| **Orders** | `/api/Order/{userId}`, `/api/CheckOut/{userId}` | GET, POST | 100% (2/2 endpoints) |
-| **Wishlist** | - | - | 0% (0/3 endpoints) |
-
-
-### 4.2 Test Scenarios
-
-#### **4.2.1 Smoke Test Suite (Critical Path)**
+#### **4.1.1 Smoke Test Suite (Critical Path)**
 
 | Test Case | Purpose | Business Impact |
 |-----------|---------|-----------------|
@@ -103,7 +91,7 @@ This test plan outlines the API testing approach for the Book Cart application, 
 | `test_book_browsing_smoke` | Book discovery flow | User experience |
 | `test_order_checkout_smoke` | Complete purchase flow | Business completion |
 
-#### **4.2.2 Positive Test Scenarios**
+#### **4.1.2 Positive Test Scenarios**
 
 **User Management**
 - Valid user registration with all required fields (POST /api/User)
@@ -138,11 +126,11 @@ This test plan outlines the API testing approach for the Book Cart application, 
 - **User Session Flow:** Login → Browse → Add Items → Logout → Login Again → Verify Cart Persistence
 - **Error Recovery Flow:** Failed Login → Retry → Success → Continue Shopping → Complete Purchase
 
-#### **4.2.3 Negative Test Scenarios**
+#### **4.1.3 Negative Test Scenarios**
 
 **Login Validation**
-- Login with invalid credentials (POST /api/Login)
-- Registration with invalid password format (POST /api/User)
+-  Login with invalid credentials (POST /api/Login)
+-  Registration with invalid password format (POST /api/User)
 -  Login with non-existent username (POST /api/Login)
 -  Registration with duplicate username (POST /api/User)
 -  Login with empty credentials (POST /api/Login)
@@ -177,10 +165,20 @@ This test plan outlines the API testing approach for the Book Cart application, 
 ## 5. Bug Analysis & Quality Metrics
 
 ### 5.1 Quality Metrics
-- **Test Coverage:** 65% coverage (13/20 endpoints tested)
+- **API Endpoints Coverage:** 59% coverage (13/22 endpoints tested)
 - **Total Test Cases:** 10 automated + 38 available = 48 total
 - **Test Execution Time:** ~4-5 seconds for full test suite
 - **Automation Rate:** 21% (10/48 total test cases are automated)
+
+#### **5.1.1 Detailed Endpoints Coverage**
+
+| Domain | Endpoints Tested | HTTP Methods | Coverage |
+|--------|------------------|--------------|----------|
+| **User Management** | `/api/User`, `/api/Login`, `/api/User/validateUserName/{userName}` | POST, GET | 75% (3/4 endpoints) |
+| **Book Catalog** | `/api/Book`, `/api/Book/{id}`, `/api/Book/GetCategoriesList`, `/api/Book/GetSimilarBooks/{bookId}` | GET | 57% (4/7 endpoints) |
+| **Shopping Cart** | `/api/ShoppingCart/{userId}`, `/api/ShoppingCart/AddToCart/{userId}/{bookId}`, `/api/ShoppingCart/{userId}/{bookId}` | GET, POST, DELETE | 50% (3/6 endpoints) |
+| **Orders** | `/api/Order/{userId}`, `/api/CheckOut/{userId}` | GET, POST | 100% (2/2 endpoints) |
+| **Wishlist** | - | - | 0% (0/3 endpoints) |
 
 ### 5.2 Bug Reporting Process
 
