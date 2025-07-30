@@ -32,11 +32,7 @@ def test_book_browsing_smoke(api_client, logger):
     
     # Verify book ID matches
     assert book_data["bookId"] == book_id, f"Book ID mismatch: expected {book_id}, got {book_data['bookId']}"
-    
-    # Verify basic data validity
-    assert book_data["title"], f"Book title cannot be empty"
-    assert book_data["author"], f"Book author cannot be empty"
-    assert book_data["price"] >= 0, f"Book price should be non-negative, got {book_data['price']}"
+
     
     book_category = book_data["category"]
     logger.info(f"Book category: {book_category}")

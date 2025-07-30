@@ -27,7 +27,7 @@ This project was created as part of a QA Engineer assignment with the following 
 -  **Negative Tests:** 2 error scenario tests with invalid data
 -  **Python Automation:** pytest framework with modular architecture
 -  **GitHub Repository:** Complete solution with documentation
--  **Bug Reports:** Flaky registration test documented with reproduction steps
+-  **Bug Reports:** 3 documented bugs with reproduction steps (API flaky test + 2 UI validation issues)
 -  **Best Practices:** Clean code, modular design, proper documentation
 
 ## Prerequisites
