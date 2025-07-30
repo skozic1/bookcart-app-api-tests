@@ -13,11 +13,11 @@ The automated registration smoke test (`test_registration_smoke`) is flaky: it s
 - After successful registration (200 OK), login with the same credentials should always succeed immediately.
 
 ### Actual Behavior
-- Sometimes login succeeds, sometimes it fails with 401 Unauthorized, even after polling up to 5 seconds.
-- Increasing wait time does not guarantee success.
+- Sometimes login succeeds, sometimes it fails with 401 Unauthorized immediately after registration.
+- No retry mechanism is currently implemented in the test.
 
 ### Additional Notes
-- The test uses polling (retry loop) for login after registration, up to 5 seconds.
+- The test does not use polling or retry mechanism - it attempts login once immediately after registration.
 - Registration payload and login credentials are logged and confirmed to be correct and matching.
 - Manual registration and login with the same data works as expected.
 - This suggests a possible race condition, backend delay, or eventual consistency issue in the API or environment.

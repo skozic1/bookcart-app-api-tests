@@ -122,7 +122,6 @@ This test plan outlines the API testing approach for the Book Cart application, 
 | `test_shopping_cart_smoke` | Cart operations | Revenue generation |
 | `test_book_browsing_smoke` | Book discovery flow | User experience |
 | `test_order_checkout_smoke` | Complete purchase flow | Business completion |
-| `Complete User Journey Flow (E2E Smoke)` | End-to-end user experience | Complete business validation |
 
 ### 4.3 Positive Test Scenarios
 
@@ -152,7 +151,6 @@ This test plan outlines the API testing approach for the Book Cart application, 
 
 - **Automated** **Book Discovery Flow (Smoke):** Get All Books → Get Book Details → Get Similar Books - tested in test_book_browsing_smoke
 - **Automated** **Complete Purchase Flow (Smoke):** Add to Cart → Verify Cart → Checkout → Verify Order History - tested in test_order_checkout_smoke
-- **Complete User Journey Flow (Smoke):** Registration → Login → Browse Books → Add Multiple Books → Checkout → Verify Order History
 - **Shopping Cart Management Flow:** Add Books → Update Quantities → Remove Items → Transfer Cart → Checkout
 - **Order Processing Flow:** Browse Categories → Filter Books → Get Book Details → Find Similar Books → Add to Cart
 - **Guest User Flow:** Browse Books → Add to Cart → Register → Complete Purchase → Verify Order
@@ -198,15 +196,15 @@ This test plan outlines the API testing approach for the Book Cart application, 
 
 | Test Category | Automated | Not Automated | Total Available |
 |---------------|-----------|---------------|-----------------|
-| **Positive Test Cases** | 11 | 11 | 22 |
+| **Positive Test Cases** | 6 | 16 | 22 |
 | **Negative Test Cases** | 2 | 22 | 24 |
-| **Total** | **13** | **33** | **46** |
+| **Total** | **8** | **38** | **46** |
 
 **Test Distribution:**
-- **Positive Tests:** 11 automated (7 smoke + 2 E2E flows) + 11 available = 22 total
+- **Positive Tests:** 6 automated (6 smoke tests) + 16 available = 22 total
 - **Negative Tests:** 2 automated + 22 available = 24 total
-- **Total Automated:** 13 test cases
-- **Total Available:** 33 test cases
+- **Total Automated:** 8 test cases
+- **Total Available:** 38 test cases
 
 ---
 
@@ -214,13 +212,13 @@ This test plan outlines the API testing approach for the Book Cart application, 
 
 ### 5.1 Quality Metrics
 - **Test Coverage:** 65% coverage (13/20 endpoints tested)
-- **Total Test Cases:** 13 automated + 33 available = 46 total
+- **Total Test Cases:** 8 automated + 38 available = 46 total
 - **Test Execution Time:** ~4-5 seconds for full test suite
-- **Automation Rate:** 28% (13/46 total test cases are automated)
-- **Positive Test Cases:** 11 automated + 11 available = 22 total
+- **Automation Rate:** 17% (8/46 total test cases are automated)
+- **Positive Test Cases:** 6 automated + 16 available = 22 total
 - **Negative Test Cases:** 2 automated + 22 available = 24 total
-- **Positive Test Ratio:** 85% (11/13 automated tests are positive scenarios)
-- **Negative Test Ratio:** 15% (2/13 automated tests are negative scenarios)
+- **Positive Test Ratio:** 75% (6/8 automated tests are positive scenarios)
+- **Negative Test Ratio:** 25% (2/8 automated tests are negative scenarios)
 
 ### 5.2 Bug Reporting Process
 
