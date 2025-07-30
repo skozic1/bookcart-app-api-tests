@@ -33,7 +33,6 @@ def test_book_browsing_smoke(api_client, logger):
     # Verify book ID matches
     assert book_data["bookId"] == book_id, f"Book ID mismatch: expected {book_id}, got {book_data['bookId']}"
 
-    
     book_category = book_data["category"]
     logger.info(f"Book category: {book_category}")
 
