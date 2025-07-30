@@ -44,7 +44,7 @@ This project was created as part of a QA Engineer assignment with the following 
 
 1. **Clone the repository**
    ```bash
-   git clone https://github.com/skozic1/bookcart-api-tests.git
+   git clone https://github.com/skozic1/bookcart-app-api-tests.git
    cd bookcart-api-tests
    ```
 
