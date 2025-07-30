@@ -35,17 +35,10 @@ This test plan outlines the API testing approach for the Book Cart application, 
 - **API Style:** RESTful with JSON request/response
 - **Key Features:** User registration, book browsing, shopping cart, order management
 
-### 2.2 API Endpoints Covered
 
-| Domain | Endpoints Tested | HTTP Methods | Test Coverage |
-|--------|------------------|--------------|---------------|
-| **User Management** | `/api/User`, `/api/Login`, `/api/User/validateUserName/{userName}` | POST, GET | 75% (3/4 endpoints) |
-| **Book Catalog** | `/api/Book`, `/api/Book/{id}`, `/api/Book/GetCategoriesList`, `/api/Book/GetSimilarBooks/{bookId}` | GET | 57% (4/7 endpoints) |
-| **Shopping Cart** | `/api/ShoppingCart/{userId}`, `/api/ShoppingCart/AddToCart/{userId}/{bookId}`, `/api/ShoppingCart/{userId}/{bookId}` | GET, POST, DELETE | 50% (3/6 endpoints) |
-| **Orders** | `/api/Order/{userId}`, `/api/CheckOut/{userId}` | GET, POST | 100% (2/2 endpoints) |
 
-### 2.3 Testing Scope
--  **Functional API Testing** - Core business functionality
+### 2.2 Testing Scope
+-  **API Testing** - Core business functionality
 -  **User Flow Testing** - End-to-end workflows
 -  **Data Validation** - Request/response validation
 -  **Error Handling** - Negative test scenarios
@@ -84,73 +77,60 @@ This test plan outlines the API testing approach for the Book Cart application, 
 
 ---
 
-## 4. Test Scenarios & Coverage
+## 4. API Endpoints Coverage
 
-### 4.1 Critical User Flows (End-to-End)
+### 4.1 API Endpoints Tested
 
-#### **Flow A: User Registration & Authentication**
-```
-1. User Registration → 2. Login → 3. Verify Authentication
-```
-**Test Cases:** `test_registration_smoke`, `test_login_smoke`
+| Domain | Endpoints Tested | HTTP Methods | Test Coverage |
+|--------|------------------|--------------|---------------|
+| **User Management** | `/api/User`, `/api/Login`, `/api/User/validateUserName/{userName}` | POST, GET | 75% (3/4 endpoints) |
+| **Book Catalog** | `/api/Book`, `/api/Book/{id}`, `/api/Book/GetCategoriesList`, `/api/Book/GetSimilarBooks/{bookId}` | GET | 57% (4/7 endpoints) |
+| **Shopping Cart** | `/api/ShoppingCart/{userId}`, `/api/ShoppingCart/AddToCart/{userId}/{bookId}`, `/api/ShoppingCart/{userId}/{bookId}` | GET, POST, DELETE | 50% (3/6 endpoints) |
+| **Orders** | `/api/Order/{userId}`, `/api/CheckOut/{userId}` | GET, POST | 100% (2/2 endpoints) |
+| **Wishlist** | - | - | 0% (0/3 endpoints) |
 
-#### **Flow B: Book Discovery & Browsing**
-```
-1. Browse All Books → 2. Get Book Details → 3. Get Similar Books → 4. Browse Categories
-```
-**Test Cases:** `test_book_browsing_smoke`, `test_book_categories_smoke`
 
-#### **Flow C: Shopping Cart Management**
-```
-1. Add Book to Cart → 2. View Cart → 3. Remove Book from Cart
-```
-**Test Cases:** `test_shopping_cart_smoke`
+### 4.2 Test Scenarios
 
-#### **Flow D: Order Processing**
-```
-1. Add Book to Cart → 2. Complete Checkout → 3. Verify Order in History
-```
-**Test Cases:** `test_order_checkout_smoke`
-
-### 4.2 Smoke Test Suite (Critical Path)
+#### **4.2.1 Smoke Test Suite (Critical Path)**
 
 | Test Case | Purpose | Business Impact |
 |-----------|---------|-----------------|
 | `test_registration_smoke` | User account creation | User acquisition |
 | `test_login_smoke` | User authentication | User access |
 | `test_book_categories_smoke` | Book categories validation | Core functionality |
-| `test_shopping_cart_smoke` | Cart operations | Revenue generation |
+| `test_shopping_cart_smoke` | Basic cart operations | Revenue generation |
 | `test_book_browsing_smoke` | Book discovery flow | User experience |
 | `test_order_checkout_smoke` | Complete purchase flow | Business completion |
 
-### 4.3 Positive Test Scenarios
+#### **4.2.2 Positive Test Scenarios**
 
-#### **User Management**
-- **Automated** Valid user registration with all required fields (POST /api/User)
-- **Automated** User login with correct credentials (POST /api/Login)
-- **Automated** Username validation (GET /api/User/validateUserName/{userName}) - tested in test_registration_smoke and test_registration_invalid_password
+**User Management**
+- Valid user registration with all required fields (POST /api/User)
+- User login with correct credentials (POST /api/Login)
+- Username validation (GET /api/User/validateUserName/{userName})
 -  User profile retrieval (GET /api/User/{userId})
 
-#### **Book Catalog**
-- **Automated** Retrieve complete book catalog (GET /api/Book) - tested in test_book_browsing_smoke
-- **Automated** Get book details by ID (GET /api/Book/{id}) - tested in test_book_browsing_smoke
-- **Automated** Get similar book recommendations (GET /api/Book/GetSimilarBooks/{bookId}) - tested in test_book_browsing_smoke
-- **Automated** Category listing and validation (GET /api/Book/GetCategoriesList) - tested in test_book_categories_smoke
+**Book Catalog**
+- Retrieve complete book catalog (GET /api/Book)
+- Get book details by ID (GET /api/Book/{id})
+- Get similar book recommendations (GET /api/Book/GetSimilarBooks/{bookId})
+- Category listing and validation (GET /api/Book/GetCategoriesList)
 
-#### **Shopping Cart**
-- **Automated** Add book to cart (POST /api/ShoppingCart/AddToCart/{userId}/{bookId}) - tested in test_order_checkout_smoke
-- **Automated** View cart contents (GET /api/ShoppingCart/{userId}) - tested in test_order_checkout_smoke
-- **Automated** Remove book from cart (DELETE /api/ShoppingCart/{userId}/{bookId}) - tested in test_shopping_cart_smoke
+**Shopping Cart**
+- Add book to cart (POST /api/ShoppingCart/AddToCart/{userId}/{bookId})
+- View cart contents (GET /api/ShoppingCart/{userId})
+- Remove book from cart (DELETE /api/ShoppingCart/{userId}/{bookId})
 
-#### **Order Management**
-- **Automated** Complete checkout process (POST /api/CheckOut/{userId}) - tested in test_order_checkout_smoke
-- **Automated** Order history retrieval (GET /api/Order/{userId}) - tested in test_order_checkout_smoke
+**Order Management**
+- Complete checkout process (POST /api/CheckOut/{userId})
+- Order history retrieval (GET /api/Order/{userId})
 
-#### **End-to-End (E2E) User Flows**
-**End-to-End tests simulate real user journeys through the entire application, testing integration between different API endpoints and business flows.**
+**End-to-End (E2E) User Flows**
+*End-to-End tests simulate real user journeys through the entire application, testing integration between different API endpoints and business flows.*
 
-- **Automated** **Book Discovery Flow (Smoke):** Get All Books → Get Book Details → Get Similar Books - tested in test_book_browsing_smoke
-- **Automated** **Complete Purchase Flow (Smoke):** Add to Cart → Verify Cart → Checkout → Verify Order History - tested in test_order_checkout_smoke
+- **Book Discovery Flow (Smoke):** Get All Books → Get Book Details → Get Similar Books
+- **Complete Purchase Flow (Smoke):** Add to Cart → Verify Cart → Checkout → Verify Order History
 - **Shopping Cart Management Flow:** Add Books → Update Quantities → Remove Items → Transfer Cart → Checkout
 - **Order Processing Flow:** Browse Categories → Filter Books → Get Book Details → Find Similar Books → Add to Cart
 - **Guest User Flow:** Browse Books → Add to Cart → Register → Complete Purchase → Verify Order
@@ -158,18 +138,18 @@ This test plan outlines the API testing approach for the Book Cart application, 
 - **User Session Flow:** Login → Browse → Add Items → Logout → Login Again → Verify Cart Persistence
 - **Error Recovery Flow:** Failed Login → Retry → Success → Continue Shopping → Complete Purchase
 
-### 4.4 Negative Test Scenarios
+#### **4.2.3 Negative Test Scenarios**
 
-#### **Login Validation**
-- **Automated** Login with invalid credentials (POST /api/Login)
-- **Automated** Registration with invalid password format (POST /api/User)
+**Login Validation**
+- Login with invalid credentials (POST /api/Login)
+- Registration with invalid password format (POST /api/User)
 -  Login with non-existent username (POST /api/Login)
 -  Registration with duplicate username (POST /api/User)
 -  Login with empty credentials (POST /api/Login)
 -  Login with empty username (POST /api/Login)
 -  Login with empty password (POST /api/Login)
 
-#### **Data Validation**
+**Data Validation**
 -  Invalid book ID requests (non-existent book) (GET /api/Book/{id})
 -  Negative book ID requests (GET /api/Book/{id})
 -  Empty cart operations (GET /api/ShoppingCart/{userId})
@@ -177,12 +157,12 @@ This test plan outlines the API testing approach for the Book Cart application, 
 -  Remove book from empty cart (DELETE /api/ShoppingCart/{userId}/{bookId})
 -  Checkout with empty cart (POST /api/CheckOut/{userId})
 
-#### **Input Validation**
+**Input Validation**
 -  Registration with missing required fields (POST /api/User)
 -  Registration with invalid email format (POST /api/User)
 -  Registration with too short password (POST /api/User)
 
-#### **Business Logic**
+**Business Logic**
 -  Checkout without being logged in (POST /api/CheckOut/{userId})
 -  Checkout with invalid authentication token (POST /api/CheckOut/{userId})
 -  Access order history for non-existent user (GET /api/Order/{userId})
@@ -192,63 +172,26 @@ This test plan outlines the API testing approach for the Book Cart application, 
 -  Add book with negative user ID (POST /api/ShoppingCart/AddToCart/{userId}/{bookId})
 -  Add book with negative book ID (POST /api/ShoppingCart/AddToCart/{userId}/{bookId})
 
-### 4.5 Test Cases Summary
-
-| Test Category | Automated | Not Automated | Total Available |
-|---------------|-----------|---------------|-----------------|
-| **Positive Test Cases** | 6 | 16 | 22 |
-| **Negative Test Cases** | 2 | 22 | 24 |
-| **Total** | **8** | **38** | **46** |
-
-**Test Distribution:**
-- **Positive Tests:** 6 automated (6 smoke tests) + 16 available = 22 total
-- **Negative Tests:** 2 automated + 22 available = 24 total
-- **Total Automated:** 8 test cases
-- **Total Available:** 38 test cases
-
 ---
 
 ## 5. Bug Analysis & Quality Metrics
 
 ### 5.1 Quality Metrics
 - **Test Coverage:** 65% coverage (13/20 endpoints tested)
-- **Total Test Cases:** 8 automated + 38 available = 46 total
+- **Total Test Cases:** 10 automated + 38 available = 48 total
 - **Test Execution Time:** ~4-5 seconds for full test suite
-- **Automation Rate:** 17% (8/46 total test cases are automated)
-- **Positive Test Cases:** 6 automated + 16 available = 22 total
-- **Negative Test Cases:** 2 automated + 22 available = 24 total
-- **Positive Test Ratio:** 75% (6/8 automated tests are positive scenarios)
-- **Negative Test Ratio:** 25% (2/8 automated tests are negative scenarios)
+- **Automation Rate:** 21% (10/48 total test cases are automated)
 
 ### 5.2 Bug Reporting Process
 
 **For detailed bug reports with steps to reproduce, see [BUGS.md](BUGS.md).**
 
----
-
-## 6. Test Environment & Data Management
-
-### 6.1 Environment
-- **Test Environment:** https://bookcart.azurewebsites.net/
-- **API Documentation:** https://bookcart.azurewebsites.net/swagger/index.html
-
-### 6.2 Test Data Management
-```python
-# Dynamic data generation using Faker
-user_data = UserRegistration(
-    firstName=fake.first_name(),
-    lastName=fake.last_name(),
-    username=fake.user_name(),
-    password=generate_valid_password(),
-    gender=random.choice(["Male", "Female"])
-)
-```
 
 ---
 
-## 7. Automation Framework Architecture
+## 6. Automation Framework Architecture
 
-### 7.1 Project Structure
+### 6.1 Project Structure
 ```
 bookcart-api-tests/
 ├── tests/                     # Test implementations
@@ -263,28 +206,18 @@ bookcart-api-tests/
 │   ├── book_api.py           # Book domain API
 │   ├── cart_api.py           # Cart domain API
 │   └── data_factory.py       # Test data generation
+├── screenshots/               
+│   └── swagger_registration_test.png
 ├── test_data.json            # Static test data
 ├── requirements.txt          # Python dependencies
 ├── pytest.ini               # Pytest configuration
 ├── README.md                # Setup and execution guide
+├── BUGS.md                  # Bug documentation
 └── TEST_PLAN.md             # This document
 ```
 
-### 7.2 Framework Features
-- **Modular Design:** Easy to extend and maintain
-- **Configuration Management:** Centralized test configuration
-- **Logging & Reporting:** Comprehensive test execution logs
-- **Error Handling:** Clear assertion messages
 
-### 7.3 Best Practices Implemented
-- **Clean Code:** Readable and maintainable code
-- **Consistent Naming:** Clear and descriptive names
-- **Proper Documentation:** Comprehensive comments
-- **Modular Architecture:** Separated concerns
-
----
-
-## 8. Test Execution
+## 7. Test Execution
 
 **For detailed setup instructions and test execution commands,  refer to [README.md](README.md).**
 
@@ -301,18 +234,3 @@ pytest -m smoke
 
 ---
 
-## 9. Future Enhancements
-
-### 9.1 Potential Improvements
-- **Additional Endpoints:** Test remaining API endpoints
-- **Performance Testing:** Basic response time validation
-- **Security Testing:** Authentication and authorization testing
-- **Data Validation:** More comprehensive data integrity checks
-- **CI/CD Integration:** Automated test execution in pipeline
-
-### 9.2 Scalability Considerations
-- **Parallel Execution:** Running tests in parallel for faster execution
-- **Test Data Management:** More sophisticated test data strategies
-- **Environment Management:** Support for multiple test environments
-
----
