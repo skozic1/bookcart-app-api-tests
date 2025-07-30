@@ -1,11 +1,11 @@
 
-## [BUG] Flaky Registration Smoke Test: Intermittent Pass/Fail
+## [BUG] Flaky Registration Functional Test: Intermittent Pass/Fail
 
 ### Description
-The automated registration smoke test (`test_registration_smoke`) is flaky: it sometimes passes and sometimes fails. The failure occurs at the login step immediately after registration, where the API returns 401 Unauthorized, although registration returns 200 OK and the payload is valid.
+The automated registration functional test (`test_registration_functional`) is flaky: it sometimes passes and sometimes fails. The failure occurs at the login step immediately after registration, where the API returns 401 Unauthorized, although registration returns 200 OK and the payload is valid.
 
 ### Steps to Reproduce
-1. Run the automated test: `test_registration_smoke` (see `tests/test_registration.py`).
+1. Run the automated test: `test_registration_functional` (see `tests/test_registration.py`).
 2. See that the test will sometimes pass and sometimes fail (no code changes between runs).
 3. When it fails, the login step after registration returns 401 Unauthorized.
 
@@ -14,13 +14,8 @@ The automated registration smoke test (`test_registration_smoke`) is flaky: it s
 
 ### Actual Behavior
 - Sometimes login succeeds, sometimes it fails with 401 Unauthorized immediately after registration.
-- No retry mechanism is currently implemented in the test.
 
 ### Additional Notes
-- The test does not use polling or retry mechanism - it attempts login once immediately after registration.
-- Registration payload and login credentials are logged and confirmed to be correct and matching.
-- Manual registration and login with the same data works as expected.
-- This suggests a possible race condition, backend delay, or eventual consistency issue in the API or environment.
 - **Same flaky behavior observed during manual testing via Swagger UI** - registration sometimes succeeds but immediate login fails with 401, confirming this is not an automation-specific issue.
 
 ### Impact

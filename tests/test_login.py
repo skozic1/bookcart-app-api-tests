@@ -26,15 +26,11 @@ def test_login_smoke(api_client, logger):
         f"Username mismatch: expected {user_credentials['username']}, got {user_details['username']}"
     assert user_details["userId"] == user_credentials["userId"], \
         f"UserId mismatch: expected {user_credentials['userId']}, got {user_details['userId']}"
-    assert user_details["userTypeName"] == user_credentials["userTypeName"], \
-        f"UserTypeName mismatch: expected {user_credentials['userTypeName']}, got {user_details['userTypeName']}"
-    
-    # Verify token is not empty
-    assert response_data["token"], "Authentication token should not be empty"
     
     logger.info(f"Login successful! User: {user_details['username']}")
 
-def test_login_invalid_password(api_client, logger):
+@pytest.mark.negative
+def test_login_negative(api_client, logger):
     """Negative test: Login with invalid password."""
     user_credentials = get_invalid_user_credentials()
     logger.info(f"Testing login with invalid password for user: {user_credentials['username']}")

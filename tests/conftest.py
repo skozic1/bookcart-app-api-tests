@@ -62,7 +62,6 @@ def cleanup_cart(api_client, user_id, book_id):
     # Cleanup after test
     try:
         api_client.cart.remove_from_cart(user_id, book_id)
-        print(f"Cleaned up book {book_id} from cart")
     except Exception:
         pass  # Ignore cleanup errors
 

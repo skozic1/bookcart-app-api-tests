@@ -21,9 +21,10 @@ This project was created as part of a QA Engineer assignment with the following 
 
 ### Assignment Deliverables
 -  **Test Plan:** Comprehensive test strategy and coverage analysis
--  **API Test Cases:** 13 automated + 33 available test cases
+-  **API Test Cases:** 10 automated test cases covering all major functionality
 -  **Smoke Tests:** 6 critical user flow tests identified and automated
--  **Positive/Negative Tests:** 11 positive + 2 negative automated tests
+-  **Functional Tests:** 2 complete user flow tests with multiple API calls
+-  **Negative Tests:** 2 error scenario tests with invalid data
 -  **Python Automation:** pytest framework with modular architecture
 -  **GitHub Repository:** Complete solution with documentation
 -  **Bug Reports:** Flaky registration test documented with reproduction steps
@@ -73,6 +74,12 @@ pytest
 # Run only smoke tests
 pytest -m smoke
 
+# Run only functional tests
+pytest -m functional
+
+# Run only negative tests
+pytest -m negative
+
 # Run with verbose output
 pytest -v
 
@@ -95,15 +102,16 @@ start test-report.html
 ## Test Structure
 
 ### Test Files
-- `tests/test_orders.py` - Order checkout flow
-- `tests/test_shopping_cart.py` - Shopping cart operations  
-- `tests/test_book_browsing.py` - Book browsing and categories
-- `tests/test_login.py` - User authentication
-- `tests/test_registration.py` - User registration
+- `tests/test_orders.py` - Order checkout flow (smoke test)
+- `tests/test_shopping_cart.py` - Shopping cart operations (smoke + functional tests)
+- `tests/test_book_browsing.py` - Book browsing and categories (smoke tests)
+- `tests/test_login.py` - User authentication (smoke + negative tests)
+- `tests/test_registration.py` - User registration (smoke + functional + negative tests)
 
 ### Test Categories
-- **Smoke Tests** (`@pytest.mark.smoke`) - Critical user flows
-- **Regression Tests** - Comprehensive testing
+- **Smoke Tests** (`@pytest.mark.smoke`) - Critical user flows, fast execution
+- **Functional Tests** (`@pytest.mark.functional`) - Complete user flows with multiple API calls
+- **Negative Tests** (`@pytest.mark.negative`) - Invalid data and error scenarios
 
 ### Test Data
 - `test_data.json` - Test users and expected data
