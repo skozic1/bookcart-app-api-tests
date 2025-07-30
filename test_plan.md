@@ -39,7 +39,7 @@ This test plan outlines the API testing approach for the Book Cart application, 
 
 | Domain | Endpoints Tested | HTTP Methods | Test Coverage |
 |--------|------------------|--------------|---------------|
-| **User Management** | `/api/User`, `/api/Login` | POST | 50% (2/4 endpoints) |
+| **User Management** | `/api/User`, `/api/Login`, `/api/User/validateUserName/{userName}` | POST, GET | 75% (3/4 endpoints) |
 | **Book Catalog** | `/api/Book`, `/api/Book/{id}`, `/api/Book/GetCategoriesList`, `/api/Book/GetSimilarBooks/{bookId}` | GET | 57% (4/7 endpoints) |
 | **Shopping Cart** | `/api/ShoppingCart/{userId}`, `/api/ShoppingCart/AddToCart/{userId}/{bookId}`, `/api/ShoppingCart/{userId}/{bookId}` | GET, POST, DELETE | 50% (3/6 endpoints) |
 | **Orders** | `/api/Order/{userId}`, `/api/CheckOut/{userId}` | GET, POST | 100% (2/2 endpoints) |
@@ -129,8 +129,8 @@ This test plan outlines the API testing approach for the Book Cart application, 
 #### **User Management**
 - **Automated** Valid user registration with all required fields (POST /api/User)
 - **Automated** User login with correct credentials (POST /api/Login)
+- **Automated** Username validation (GET /api/User/validateUserName/{userName}) - tested in test_registration_smoke and test_registration_invalid_password
 -  User profile retrieval (GET /api/User/{userId})
--  Username validation (GET /api/User/validateUserName/{userName})
 
 #### **Book Catalog**
 - **Automated** Retrieve complete book catalog (GET /api/Book) - tested in test_book_browsing_smoke
@@ -213,7 +213,7 @@ This test plan outlines the API testing approach for the Book Cart application, 
 ## 5. Bug Analysis & Quality Metrics
 
 ### 5.1 Quality Metrics
-- **Test Coverage:** 60% coverage (12/20 endpoints tested)
+- **Test Coverage:** 65% coverage (13/20 endpoints tested)
 - **Total Test Cases:** 13 automated + 33 available = 46 total
 - **Test Execution Time:** ~4-5 seconds for full test suite
 - **Automation Rate:** 28% (13/46 total test cases are automated)

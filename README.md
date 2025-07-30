@@ -2,6 +2,33 @@
 
 Automated API testing framework for the Book Cart application using Python and pytest.
 
+## Assignment Overview
+
+This project was created as part of a QA Engineer assignment with the following requirements:
+
+- **Investigate Book Cart application** and create test plan
+- **Write API test cases** focusing on real user flows
+- **Identify Smoke Tests** from all test cases
+- **Identify positive and negative test cases**
+- **Automate API smoke tests** using Python
+- **Create GitHub repository** with documentation
+- **Report bugs** with detailed steps to reproduce
+- **Follow automation best practices**
+
+### Application Details
+- **Application:** [Book Cart](https://bookcart.azurewebsites.net/)
+- **API Documentation:** [Swagger UI](https://bookcart.azurewebsites.net/swagger/index.html)
+
+### Assignment Deliverables
+-  **Test Plan:** Comprehensive test strategy and coverage analysis
+-  **API Test Cases:** 13 automated + 33 available test cases
+-  **Smoke Tests:** 6 critical user flow tests identified and automated
+-  **Positive/Negative Tests:** 11 positive + 2 negative automated tests
+-  **Python Automation:** pytest framework with modular architecture
+-  **GitHub Repository:** Complete solution with documentation
+-  **Bug Reports:** Flaky registration test documented with reproduction steps
+-  **Best Practices:** Clean code, modular design, proper documentation
+
 ## Prerequisites
 - Python 3.9 or higher (tested with Python 3.12.1)
 - pip (Python package installer)
@@ -82,6 +109,10 @@ start test-report.html
 - `test_data.json` - Test users and expected data
 - `utils/data_factory.py` - Dynamic test data generation using Faker
 
+## Bug Reports
+
+Bug reports with detailed steps to reproduce are documented in [BUGS.md](BUGS.md).
+
 ## Project Structure
 ```
 bookcart-api-tests/
@@ -90,8 +121,13 @@ bookcart-api-tests/
 ├── utils/                 # Utility modules
 ├── test_data.json        # Test data
 ├── requirements.txt      # Python dependencies
+├── BUGS.md              # Bug documentation
 └── README.md            # This file
 ```
+
+## Best Practices
+
+This project follows automation best practices including modular architecture, clean code, proper test design, and comprehensive documentation. See [test_plan.md](test_plan.md) for detailed information about test strategy and framework design.
 
 
 
