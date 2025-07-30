@@ -2,19 +2,6 @@
 
 Automated API testing framework for the Book Cart application using Python and pytest.
 
-## Assignment Overview
-
-This project was created as part of a QA Engineer assignment with the following requirements:
-
-- **Investigate Book Cart application** and create test plan
-- **Write API test cases** focusing on real user flows
-- **Identify Smoke Tests** from all test cases
-- **Identify positive and negative test cases**
-- **Automate API smoke tests** using Python
-- **Create GitHub repository** with documentation
-- **Report bugs** with detailed steps to reproduce
-- **Follow automation best practices**
-
 ### Application Details
 - **Application:** [Book Cart](https://bookcart.azurewebsites.net/)
 - **API Documentation:** [Swagger UI](https://bookcart.azurewebsites.net/swagger/index.html)
