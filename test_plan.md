@@ -205,7 +205,9 @@ bookcart-api-tests/
 │   ├── cart_api.py           # Cart domain API
 │   └── data_factory.py       # Test data generation
 ├── screenshots/               
-│   └── swagger_registration_test.png
+│   ├── swagger_registration_test.png
+│   ├── wrongPassword-login.gif
+│   └── registration-gender-bug.gif
 ├── test_data.json            # Static test data
 ├── requirements.txt          # Python dependencies
 ├── pytest.ini               # Pytest configuration
