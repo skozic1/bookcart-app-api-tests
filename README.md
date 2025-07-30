@@ -124,7 +124,6 @@ Bug reports with detailed steps to reproduce are documented in [BUGS.md](BUGS.md
 ## Project Structure
 ```
 bookcart-api-tests/
-├── .github/workflows/     # CI/CD workflows
 ├── tests/                 # Test files
 ├── utils/                 # Utility modules
 ├── test_data.json        # Test data
