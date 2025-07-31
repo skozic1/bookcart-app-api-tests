@@ -171,7 +171,7 @@ This test plan outlines the API testing approach for the Book Cart application, 
 ### 5.1 Quality Metrics
 - **API Endpoints Coverage:** 59% coverage (13/22 endpoints tested)
 - **Total Test Cases:** 11 automated + 38 available = 49 total
-- **Test Execution Time:** ~4-5 seconds for full test suite
+- **Test Execution Time:** ~4-5 seconds per test
 - **Automation Rate:** 22% (11/49 total test cases are automated)
 
 #### **5.1.1 Detailed Endpoints Coverage**
