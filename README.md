@@ -88,7 +88,7 @@ start test-report.html
 ### Test Files
 - `tests/test_orders.py` - Order checkout flow (smoke test)
 - `tests/test_shopping_cart.py` - Shopping cart operations (smoke + functional tests)
-- `tests/test_book_browsing.py` - Book browsing and categories (smoke tests)
+- `tests/test_book_browsing.py` - Book browsing and categories (smoke + functional tests)
 - `tests/test_login.py` - User authentication (smoke + negative tests)
 - `tests/test_registration.py` - User registration (smoke + functional + negative tests)
 
