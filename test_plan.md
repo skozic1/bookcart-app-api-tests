@@ -161,7 +161,7 @@ This test plan outlines the API testing approach for the Book Cart application, 
 | `test_login_smoke` | 1. Get valid user credentials<br>2. Login user<br>3. Verify response structure | POST /api/Login |
 | `test_book_categories_smoke` | 1. Get all book categories<br>2. Verify categories list | GET /api/Book/GetCategoriesList |
 | `test_shopping_cart_smoke` | 1. Add book to cart<br>2. Get cart contents<br>3. Verify book is in cart | POST /api/ShoppingCart/AddToCart/{userId}/{bookId}<br>GET /api/ShoppingCart/{userId} |
-| `test_book_browsing_smoke` | 1. Get all books<br>2. Get book details by ID<br>3. Get similar books | GET /api/Book<br>GET /api/Book/{id}<br>GET /api/Book/GetSimilarBooks/{bookId} |
+| `test_book_by_id_smoke` | 1. Get all books<br>2. Get book details by random ID | GET /api/Book<br>GET /api/Book/{id} |
 | `test_order_checkout_smoke` | 1. Add book to cart<br>2. Get cart contents<br>3. Complete checkout<br>4. Verify order history | POST /api/ShoppingCart/AddToCart/{userId}/{bookId}<br>GET /api/ShoppingCart/{userId}<br>POST /api/CheckOut/{userId}<br>GET /api/Order/{userId} |
 
 ---
@@ -170,9 +170,9 @@ This test plan outlines the API testing approach for the Book Cart application, 
 
 ### 5.1 Quality Metrics
 - **API Endpoints Coverage:** 59% coverage (13/22 endpoints tested)
-- **Total Test Cases:** 10 automated + 38 available = 48 total
+- **Total Test Cases:** 11 automated + 38 available = 49 total
 - **Test Execution Time:** ~4-5 seconds for full test suite
-- **Automation Rate:** 21% (10/48 total test cases are automated)
+- **Automation Rate:** 22% (11/49 total test cases are automated)
 
 #### **5.1.1 Detailed Endpoints Coverage**
 
@@ -193,8 +193,9 @@ This test plan outlines the API testing approach for the Book Cart application, 
 | `test_registration.py` | `test_registration_negative` | Negative |
 | `test_login.py` | `test_login_smoke` | Smoke |
 | `test_login.py` | `test_login_negative` | Negative |
-| `test_book_browsing.py` | `test_book_browsing_smoke` | Smoke |
+| `test_book_browsing.py` | `test_book_by_id_smoke` | Smoke |
 | `test_book_browsing.py` | `test_book_categories_smoke` | Smoke |
+| `test_book_browsing.py` | `test_book_browsing_functional` | Functional |
 | `test_shopping_cart.py` | `test_shopping_cart_smoke` | Smoke |
 | `test_shopping_cart.py` | `test_shopping_cart_functional` | Functional |
 | `test_orders.py` | `test_order_checkout_smoke` | Smoke |

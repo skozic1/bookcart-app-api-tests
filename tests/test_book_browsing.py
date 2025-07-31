@@ -2,9 +2,37 @@ import pytest
 from utils.data_factory import get_random_book_id, get_expected_categories
 
 @pytest.mark.smoke
-def test_book_browsing_smoke(api_client, logger):
-    """Smoke test: Browse books and get similar books."""
-    logger.info("Starting Book Browsing Smoke Test")
+def test_book_by_id_smoke(api_client, logger):
+    """Smoke test: Get book details by random ID."""
+    logger.info("Starting Book by ID Smoke Test")
+    
+    # Get all books to find a valid book ID
+    response = api_client.books.get_all_books()
+    assert response.status_code == 200, f"Failed to get books! Expected 200, got {response.status_code}"
+    
+    books = response.json()
+    assert len(books) > 0, "No books found in the catalog"
+
+    # Get a random book ID
+    book_id = get_random_book_id(response)
+    logger.info(f"Selected book ID: {book_id}")
+
+    # Get book details by ID
+    response = api_client.books.get_book_by_id(book_id)
+    assert response.status_code == 200, f"Failed to get book by ID! Expected 200, got {response.status_code}"
+    
+    book_data = response.json()
+    logger.info(f"Book details: '{book_data['title']}' by {book_data['author']}")
+    
+    # Verify book ID matches
+    assert book_data["bookId"] == book_id, f"Book ID mismatch: expected {book_id}, got {book_data['bookId']}"
+    
+    logger.info("Book by ID Smoke Test completed successfully!")
+
+@pytest.mark.functional
+def test_book_browsing_functional(api_client, logger):
+    """Functional test: Complete book browsing flow with similar books."""
+    logger.info("Starting Book Browsing Functional Test")
     
     # Get all books
     response = api_client.books.get_all_books()
@@ -53,7 +81,7 @@ def test_book_browsing_smoke(api_client, logger):
     else:
         logger.info("No similar books found (this is OK)")
     
-    logger.info("Book Browsing Smoke Test completed successfully!")
+    logger.info("Book Browsing Functional Test completed successfully!")
 
 @pytest.mark.smoke
 def test_book_categories_smoke(api_client, logger):
