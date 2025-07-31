@@ -80,16 +80,7 @@ This test plan outlines the API testing approach for the Book Cart application, 
 ## 4. Test Scenarios
 ### 4.1 Test Scenarios
 
-#### **4.1.1 Smoke Test Suite (Critical Path)**
-
-| Test Case | Purpose | Business Impact |
-|-----------|---------|-----------------|
-| `test_registration_smoke` | User account creation | User acquisition |
-| `test_login_smoke` | User authentication | User access |
-| `test_book_categories_smoke` | Book categories validation | Core functionality |
-| `test_shopping_cart_smoke` | Basic cart operations | Revenue generation |
-| `test_book_browsing_smoke` | Book discovery flow | User experience |
-| `test_order_checkout_smoke` | Complete purchase flow | Business completion |
+#### **4.1.1 Positive Test Scenarios**
 
 #### **4.1.2 Positive Test Scenarios**
 
@@ -117,14 +108,17 @@ This test plan outlines the API testing approach for the Book Cart application, 
 **End-to-End (E2E) User Flows**
 *End-to-End tests simulate real user journeys through the entire application, testing integration between different API endpoints and business flows.*
 
-- **Book Discovery Flow (Smoke):** Get All Books → Get Book Details → Get Similar Books
-- **Complete Purchase Flow (Smoke):** Add to Cart → Verify Cart → Checkout → Verify Order History
-- **Shopping Cart Management Flow:** Add Books → Update Quantities → Remove Items → Transfer Cart → Checkout
-- **Order Processing Flow:** Browse Categories → Filter Books → Get Book Details → Find Similar Books → Add to Cart
-- **Guest User Flow:** Browse Books → Add to Cart → Register → Complete Purchase → Verify Order
-- **Bulk Purchase Flow:** Browse Multiple Categories → Add Many Books → Review Large Cart → Checkout → Verify Order
-- **User Session Flow:** Login → Browse → Add Items → Logout → Login Again → Verify Cart Persistence
-- **Error Recovery Flow:** Failed Login → Retry → Success → Continue Shopping → Complete Purchase
+| Test Case | Steps | Endpoints Used |
+|-----------|-------|----------------|
+| **E2E_Complete_Purchase_Flow** | 1. Login user<br>2. Add book to cart<br>3. Get cart contents<br>4. Complete checkout<br>5. Verify order history | POST /api/Login<br>POST /api/ShoppingCart/AddToCart/{userId}/{bookId}<br>GET /api/ShoppingCart/{userId}<br>POST /api/CheckOut/{userId}<br>GET /api/Order/{userId} |
+| **E2E_User_Registration_Flow** | 1. Validate username availability<br>2. Register new user<br>3. Login with new credentials | GET /api/User/validateUserName/{userName}<br>POST /api/User<br>POST /api/Login |
+| **E2E_Shopping_Cart_Management** | 1. Login user<br>2. Add book to cart<br>3. Get cart contents<br>4. Remove book from cart<br>5. Verify empty cart | POST /api/Login<br>POST /api/ShoppingCart/AddToCart/{userId}/{bookId}<br>GET /api/ShoppingCart/{userId}<br>DELETE /api/ShoppingCart/{userId}/{bookId}<br>GET /api/ShoppingCart/{userId} |
+| **E2E_Category_Browsing_Flow** | 1. Get all categories<br>2. Get all books<br>3. Get book details<br>4. Get similar books | GET /api/Book/GetCategoriesList<br>GET /api/Book<br>GET /api/Book/{id}<br>GET /api/Book/GetSimilarBooks/{bookId} |
+| **E2E_Multi_Book_Purchase** | 1. Login user<br>2. Add first book to cart<br>3. Add second book to cart<br>4. Get cart contents<br>5. Complete checkout<br>6. Verify order history | POST /api/Login<br>POST /api/ShoppingCart/AddToCart/{userId}/{bookId1}<br>POST /api/ShoppingCart/AddToCart/{userId}/{bookId2}<br>GET /api/ShoppingCart/{userId}<br>POST /api/CheckOut/{userId}<br>GET /api/Order/{userId} |
+
+| **E2E_Book_Recommendation_Flow** | 1. Get all books<br>2. Select random book<br>3. Get book details<br>4. Get similar books<br>5. Get details of similar book | GET /api/Book<br>GET /api/Book/{id}<br>GET /api/Book/GetSimilarBooks/{bookId}<br>GET /api/Book/{similarBookId} |
+| **E2E_Order_History_Flow** | 1. Login user<br>2. Complete purchase<br>3. Get order history<br>4. Verify order details | POST /api/Login<br>POST /api/CheckOut/{userId}<br>GET /api/Order/{userId} |
+| **E2E_User_Profile_Flow** | 1. Register new user<br>2. Login user<br>3. Validate username<br>4. Get user profile (if endpoint exists) | POST /api/User<br>POST /api/Login<br>GET /api/User/validateUserName/{userName} |
 
 #### **4.1.3 Negative Test Scenarios**
 
@@ -160,6 +154,17 @@ This test plan outlines the API testing approach for the Book Cart application, 
 -  Add book with negative user ID (POST /api/ShoppingCart/AddToCart/{userId}/{bookId})
 -  Add book with negative book ID (POST /api/ShoppingCart/AddToCart/{userId}/{bookId})
 
+#### **4.1.4 Smoke Test Suite (Critical Path)**
+
+| Test Case | Steps | Endpoints Tested |
+|-----------|-------|------------------|
+| `test_registration_smoke` | 1. Generate valid user data<br>2. Register new user | POST /api/User |
+| `test_login_smoke` | 1. Get valid user credentials<br>2. Login user<br>3. Verify response structure | POST /api/Login |
+| `test_book_categories_smoke` | 1. Get all book categories<br>2. Verify categories list | GET /api/Book/GetCategoriesList |
+| `test_shopping_cart_smoke` | 1. Add book to cart<br>2. Get cart contents<br>3. Verify book is in cart | POST /api/ShoppingCart/AddToCart/{userId}/{bookId}<br>GET /api/ShoppingCart/{userId} |
+| `test_book_browsing_smoke` | 1. Get all books<br>2. Get book details by ID<br>3. Get similar books | GET /api/Book<br>GET /api/Book/{id}<br>GET /api/Book/GetSimilarBooks/{bookId} |
+| `test_order_checkout_smoke` | 1. Add book to cart<br>2. Get cart contents<br>3. Complete checkout<br>4. Verify order history | POST /api/ShoppingCart/AddToCart/{userId}/{bookId}<br>GET /api/ShoppingCart/{userId}<br>POST /api/CheckOut/{userId}<br>GET /api/Order/{userId} |
+
 ---
 
 ## 5. Bug Analysis & Quality Metrics
@@ -179,6 +184,21 @@ This test plan outlines the API testing approach for the Book Cart application, 
 | **Shopping Cart** | `/api/ShoppingCart/{userId}`, `/api/ShoppingCart/AddToCart/{userId}/{bookId}`, `/api/ShoppingCart/{userId}/{bookId}` | GET, POST, DELETE | 50% (3/6 endpoints) |
 | **Orders** | `/api/Order/{userId}`, `/api/CheckOut/{userId}` | GET, POST | 100% (2/2 endpoints) |
 | **Wishlist** | - | - | 0% (0/3 endpoints) |
+
+#### **5.1.2 Automated Test Coverage**
+
+| Test File | Test Function | Category |
+|-----------|---------------|----------|
+| `test_registration.py` | `test_registration_smoke` | Smoke |
+| `test_registration.py` | `test_registration_functional` | Functional |
+| `test_registration.py` | `test_registration_negative` | Negative |
+| `test_login.py` | `test_login_smoke` | Smoke |
+| `test_login.py` | `test_login_negative` | Negative |
+| `test_book_browsing.py` | `test_book_browsing_smoke` | Smoke |
+| `test_book_browsing.py` | `test_book_categories_smoke` | Smoke |
+| `test_shopping_cart.py` | `test_shopping_cart_smoke` | Smoke |
+| `test_shopping_cart.py` | `test_shopping_cart_functional` | Functional |
+| `test_orders.py` | `test_order_checkout_smoke` | Smoke |
 
 ### 5.2 Bug Reporting Process
 
