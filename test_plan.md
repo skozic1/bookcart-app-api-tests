@@ -82,8 +82,6 @@ This test plan outlines the API testing approach for the Book Cart application, 
 
 #### **4.1.1 Positive Test Scenarios**
 
-#### **4.1.2 Positive Test Scenarios**
-
 **User Management**
 - Valid user registration with all required fields (POST /api/User)
 - User login with correct credentials (POST /api/Login)
@@ -119,7 +117,7 @@ This test plan outlines the API testing approach for the Book Cart application, 
 | **E2E_Order_History_Flow** | 1. Login user<br>2. Complete purchase<br>3. Get order history<br>4. Verify order details | POST /api/Login<br>POST /api/CheckOut/{userId}<br>GET /api/Order/{userId} |
 | **E2E_User_Profile_Flow** | 1. Register new user<br>2. Login user<br>3. Validate username<br>4. Get user profile | POST /api/User<br>POST /api/Login<br>GET /api/User/validateUserName/{userName} |
 
-#### **4.1.3 Negative Test Scenarios**
+#### **4.1.2 Negative Test Scenarios**
 
 **Login Validation**
 -  Login with invalid credentials (POST /api/Login)
@@ -153,7 +151,7 @@ This test plan outlines the API testing approach for the Book Cart application, 
 -  Add book with negative user ID (POST /api/ShoppingCart/AddToCart/{userId}/{bookId})
 -  Add book with negative book ID (POST /api/ShoppingCart/AddToCart/{userId}/{bookId})
 
-#### **4.1.4 Smoke Test Suite (Critical Path)**
+#### **4.1.3 Smoke Test Suite (Critical Path)**
 
 | Test Case | Steps | Endpoints Tested |
 |-----------|-------|------------------|
