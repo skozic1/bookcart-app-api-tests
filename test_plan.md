@@ -56,7 +56,7 @@ This test plan outlines the API testing approach for the Book Cart application, 
 - **Configuration:** pytest.ini
 
 ### 3.2 Design Patterns Implemented
-- **Page Object Model (POM)** - API client abstraction
+- **API Object Model** - API client abstraction
 - **Factory Pattern** - Test data generation
 - **Modular Design** - Separated concerns and responsibilities
 
