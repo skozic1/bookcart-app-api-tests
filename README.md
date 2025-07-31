@@ -8,9 +8,9 @@ Automated API testing framework for the Book Cart application using Python and p
 
 ### Assignment Deliverables
 -  **Test Plan:** Comprehensive test strategy and coverage analysis
--  **API Test Cases:** 10 automated test cases covering all major functionality
+-  **API Test Cases:** 11 automated test cases covering all major functionality
 -  **Smoke Tests:** 6 critical user flow tests identified and automated
--  **Functional Tests:** 2 complete user flow tests with multiple API calls
+-  **Functional Tests:** 3 complete user flow tests with multiple API calls
 -  **Negative Tests:** 2 error scenario tests with invalid data
 -  **Python Automation:** pytest framework with modular architecture
 -  **GitHub Repository:** Complete solution with documentation
